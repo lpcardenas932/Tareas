@@ -1,0 +1,3 @@
+El problema consistia en poder realizar un programa que apoyara a calcular el monto a asegurar a cada cliente segun las condiciones en las que se encontraba: ¿Tenia hijos?, ¿Estaba casado?, 
+¿Tenia propiedades?, ¿Que edad tenia? y segun el numero ingresado se iban calculando y sumando a un recargo total los montos para luego ser desplegados en pantalla.
+Finalmente este recargo total se suma con un precio base de cobro al asegurado y se desplega el total final.

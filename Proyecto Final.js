@@ -1,8 +1,9 @@
-//Variables utiles 
+
 //Precio base de la cotización, en quetzales, lo puede cambiar
 var precio_base = 2000
 
 //Valores de los recargos 
+//son condiciones fijas que se multiplicaran segun el numero ingresado en cada bucle.
 var edad_18 = 0.1;// 10%
 var edad_25 = 0.2;// 20%
 var edad_50 = 0.3;// 30%
@@ -15,24 +16,24 @@ var hijos_recargo = 0.2;// 20%
 var recargo_propiedad = 0.35;//35% de la cotización
 var recargo_propiedad_salario = 0.05;//5% sobre salario del asegurado
 
-//Recargo
 
-
-//Precio final 
 
 
 //Extras
 var salir = ""
 
 while (salir != "salir") { //Mientras no ponga salir al final de la ejecucción del bloque, este seguira corriendo el bloque de codigo
-
+//Recargo.
+//Precio final
+//Se ingresan estas variables aqui, asi cada vez que se repite el bucle del codigo, se resetea a 0 su valor. 
   var recargo = 0
   var recargo_total = 0
   var precio_final = 0
-  
+
   //Mensajes de alerta para ingresar datos 
   var nombre = prompt("Ingrese su nombre, por favor")
-  var edad = prompt("¿Cuantos años tiene?", "Ingrese solamente números ") //Aquí es donde debe de calcular los recargos y el valor final
+  var edad = prompt("¿Cuantos años tiene?", "Ingrese solamente números ") 
+  
   //verificar primero si la persona a aseguar es mayor de edad, si no es mayor, no deja asegurarlo y finaliza
 
   //convirtiendo las edades ingresadas a números 
@@ -90,16 +91,19 @@ while (salir != "salir") { //Mientras no ponga salir al final de la ejecucción 
         recargo = precio_base * edad_18
         //Sumamos todos los recargos que hemos obtenido
         recargo_total = recargo_total + recargo
+        //Multiplicamos recargo por valor fijo para obtener recargo total
       }
       else if (edad_conyuge_numero >= 25 && edad_conyuge_numero < 50) {
         //Calculamos el recargo en base a la edad de entre 25 a 49 años
         recargo = precio_base * edad_25
+        //Multiplicamos recargo por valor fijo para obtener recargo total
 
         recargo_total = recargo_total + recargo
       }
       else if (edad_conyuge_numero >= 50) {
         //Calculamos el recargo en base a la edad de 50 años o más
         recargo = precio_base * edad_50
+        //Multiplicamos recargo por valor fijo para obtener recargo total
 
         recargo_total = recargo_total + recargo //Aquí debe calcular el recargo total basado en las respuestas ingresadas
       }
@@ -125,11 +129,13 @@ while (salir != "salir") { //Mientras no ponga salir al final de la ejecucción 
       if ("SI" == propiedad.toUpperCase()) {
         if (cantidad_propiedad == 1) {
           recargo = (hijos_recargo * precio_base * cantidad_hijos_numero) * recargo_propiedad + (hijos_recargo * precio_base * cantidad_hijos_numero)
+          //Este recargo menciona que se debe multiplicar por 35% lo que saldria de la cotizacion de todo lo ingresado anteriormente y sumarlo al mismo.
 
           recargo_total = recargo_total + recargo
         }
         else if ("SI" == cantidad_propiedad == 2) {
           recargo = (hijos_recargo * precio_base * cantidad_hijos_numero) * recargo_propiedad + (hijos_recargo * precio_base * cantidad_hijos_numero) + (recargo_propiedad_salario * precio_base)
+            //Este recargo menciona que se debe multiplicar por 35% lo que saldria de la cotizacion de todo lo ingresado anteriormente y sumarlo al mismo.
 
           recargo_total = recargo_total + recargo //Aquí debe calcular el recargo total basado en las respuestas ingresadas
         }
@@ -137,10 +143,10 @@ while (salir != "salir") { //Mientras no ponga salir al final de la ejecucción 
     }
     precio_final = precio_base + recargo_total
     //Resultado
-    alert("Para el asegurado " + nombre)
-    alert("El recargo total sera de: " + recargo_total)
+    alert("Para el asegurado " + nombre) //imprimir nombre ingresado
+    alert("El recargo total sera de: " + recargo_total) //imprimir recargo acumulado
 
-    alert("El precio sera de: " + precio_final)
+    alert("El precio sera de: " + precio_final) //imprimir total de asgurado
   } else {
 
     alert("No podemos asegurarlo, debe ser mayor de edad")
